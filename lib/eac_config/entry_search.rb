@@ -10,13 +10,19 @@ module EacConfig
 
     private
 
+    def result_from_self_uncached
+      return nil unless paths_hash.key?(to_paths_hash_key)
+
+      ::EacConfig::Entry.new(node, path, true, paths_hash.fetch(to_paths_hash_key))
+    end
+
+    def result_not_found_uncached
+      ::EacConfig::Entry.new(nil, path, false, nil)
+    end
+
     # @return [EacConfig::Entry]
     def result_uncached
-      if paths_hash.key?(to_paths_hash_key)
-        ::EacConfig::Entry.new(node, path, true, paths_hash.fetch(to_paths_hash_key))
-      else
-        ::EacConfig::Entry.new(nil, path, false, nil)
-      end
+      result_from_self || result_not_found
     end
 
     # @return [EacConfig::PathsHash]
