@@ -10,6 +10,10 @@ module EacConfig
 
     private
 
+    def result_from_load_path_uncached
+      node.recursive_loaded_nodes.lazy.map { |loaded_node| loaded_node.entry(path) }.find(&:found?)
+    end
+
     def result_from_self_uncached
       return nil unless paths_hash.key?(to_paths_hash_key)
 
@@ -22,7 +26,7 @@ module EacConfig
 
     # @return [EacConfig::Entry]
     def result_uncached
-      result_from_self || result_not_found
+      result_from_self || result_from_load_path || result_not_found
     end
 
     # @return [EacConfig::PathsHash]
