@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'addressable'
 require 'eac_config/entry'
 require 'eac_config/entry_search'
 require 'eac_config/readable_node'
@@ -20,6 +21,10 @@ module EacConfig
 
     def entry(path)
       ::EacConfig::EntrySearch.new(self, ::EacConfig::EntryPath.assert(path)).result
+    end
+
+    def url
+      ::Addressable::URI.parse("file://#{path.expand_path}")
     end
   end
 end
