@@ -19,10 +19,6 @@ module EacConfig
       @data ||= ::EacRubyUtils::Yaml.load_file(path)
     end
 
-    def entry(path)
-      ::EacConfig::EntrySearch.new(self, ::EacConfig::EntryPath.assert(path)).result
-    end
-
     def url
       ::Addressable::URI.parse("file://#{path.expand_path}")
     end
