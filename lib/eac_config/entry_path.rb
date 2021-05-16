@@ -7,6 +7,10 @@ module EacConfig
     PART_SEPARATOR = '.'
 
     class << self
+      def assert(source)
+        source.is_a?(self) ? source : new(build_parts(source))
+      end
+
       def build_parts(source)
         return validate_parts!(source.split(PART_SEPARATOR)) if source.is_a?(::String)
         return validate_parts!(source.flat_map { |part| build_parts(part) }) if
@@ -26,8 +30,8 @@ module EacConfig
 
     attr_reader :parts
 
-    def initialize(*parts)
-      @parts = self.class.build_parts(parts).freeze
+    def initialize(parts)
+      @parts = parts.to_a.freeze
     end
   end
 end

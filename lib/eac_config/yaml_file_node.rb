@@ -19,7 +19,7 @@ module EacConfig
     end
 
     def entry(*path)
-      ::EacConfig::EntrySearch.new(self, ::EacConfig::EntryPath.new(*path)).result
+      ::EacConfig::EntrySearch.new(self, ::EacConfig::EntryPath.assert(path)).result
     end
   end
 end
