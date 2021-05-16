@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_config/entry_path'
+require 'eac_config/load_nodes_search'
 require 'eac_ruby_utils/core_ext'
 
 module EacConfig
@@ -28,6 +29,11 @@ module EacConfig
                               .result_from_self.if_present([]) do |e|
         e.value.split(LOAD_PATH_PATH_SEPARATOR).map { |node_path| load_node(node_path) }
       end
+    end
+
+    # @return [Array<EacConfig::Node>]
+    def recursive_loaded_nodes
+      ::EacConfig::LoadNodesSearch.new(self).result
     end
 
     private
