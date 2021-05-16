@@ -3,13 +3,13 @@
 require 'addressable'
 require 'eac_config/entry'
 require 'eac_config/entry_search'
-require 'eac_config/readable_node'
+require 'eac_config/node'
 require 'eac_ruby_utils/core_ext'
 require 'eac_ruby_utils/yaml'
 
 module EacConfig
   class YamlFileNode
-    include ::EacConfig::ReadableNode
+    include ::EacConfig::Node
 
     common_constructor :path do
       self.path = path.to_pathname
