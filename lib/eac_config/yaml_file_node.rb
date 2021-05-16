@@ -18,7 +18,7 @@ module EacConfig
       @data ||= ::EacRubyUtils::Yaml.load_file(path)
     end
 
-    def entry(*path)
+    def entry(path)
       ::EacConfig::EntrySearch.new(self, ::EacConfig::EntryPath.assert(path)).result
     end
   end
