@@ -2,6 +2,7 @@
 
 require 'eac_config/entry'
 require 'eac_config/entry_path'
+require 'eac_config/load_path'
 require 'eac_config/load_nodes_search'
 require 'eac_config/node_entry'
 require 'eac_ruby_utils/core_ext'
@@ -13,11 +14,13 @@ module EacConfig
       include ::Comparable
     end
 
-    LOAD_PATH_ENTRY_PATH = ::EacConfig::EntryPath.assert(%w[load_path])
-    LOAD_PATH_PATH_SEPARATOR = ':'
-
     def entry(path)
       ::EacConfig::Entry.new(self, path)
+    end
+
+    # @return [[EacConfig::IncludePath]]
+    def load_path
+      @load_path ||= ::EacConfig::LoadPath.new(self)
     end
 
     # @return [Addressable::URI]
@@ -33,8 +36,7 @@ module EacConfig
 
     # @return [Array<EacConfig::Node>]
     def self_loaded_nodes
-      self_entry(LOAD_PATH_ENTRY_PATH).value.to_s.split(LOAD_PATH_PATH_SEPARATOR)
-                                      .map { |node_path| load_node(node_path) }
+      load_path.paths.map { |node_path| load_node(node_path) }
     end
 
     # @return [Array<EacConfig::Node>]
