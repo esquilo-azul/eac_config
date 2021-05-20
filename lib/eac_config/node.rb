@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_config/entry_path'
+require 'eac_config/entry_search'
 require 'eac_config/load_nodes_search'
 require 'eac_ruby_utils/core_ext'
 
