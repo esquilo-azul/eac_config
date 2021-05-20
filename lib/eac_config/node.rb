@@ -3,6 +3,7 @@
 require 'eac_config/entry_path'
 require 'eac_config/entry_search'
 require 'eac_config/load_nodes_search'
+require 'eac_config/node_entry'
 require 'eac_ruby_utils/core_ext'
 
 module EacConfig
@@ -24,12 +25,16 @@ module EacConfig
       raise_abstract_method(__method__)
     end
 
+    # Return a entry which search values only in the self node.
+    # @return [EacConfig::NodeEntry]
+    def self_entry(path)
+      ::EacConfig::NodeEntry.new(self, path)
+    end
+
     # @return [Array<EacConfig::Node>]
     def self_loaded_nodes
-      ::EacConfig::EntrySearch.new(self, ::EacConfig::EntryPath.assert(LOAD_PATH_ENTRY_PATH))
-                              .result_from_self.if_present([]) do |e|
-        e.value.split(LOAD_PATH_PATH_SEPARATOR).map { |node_path| load_node(node_path) }
-      end
+      self_entry(LOAD_PATH_ENTRY_PATH).value.to_s.split(LOAD_PATH_PATH_SEPARATOR)
+                                      .map { |node_path| load_node(node_path) }
     end
 
     # @return [Array<EacConfig::Node>]
