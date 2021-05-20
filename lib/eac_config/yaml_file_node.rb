@@ -14,11 +14,22 @@ module EacConfig
     end
 
     def data
-      @data ||= ::EacRubyUtils::Yaml.load_file(path)
+      @data ||= ::EacRubyUtils::Yaml.load_file(assert_path)
     end
 
     def url
       ::Addressable::URI.parse("file://#{path.expand_path}")
+    end
+
+    private
+
+    def assert_path
+      unless path.file?
+        raise("\"#{path}\" is a not a file") if path.exist?
+
+        persist_data({})
+      end
+      path
     end
   end
 end
