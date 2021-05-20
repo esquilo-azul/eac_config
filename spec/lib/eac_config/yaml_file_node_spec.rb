@@ -34,6 +34,7 @@ RSpec.describe ::EacConfig::YamlFileNode do
       let(:entry) { instance.entry(storage.key) }
       let(:storage_node) { described_class.new(target_dir.join(storage.subpath)) }
 
+      it { expect(entry).to be_a(::EacConfig::Entry) }
       it { expect(entry).to be_found }
       it { expect(entry.value).to eq(storage.key) }
       it { expect(entry.source_node.url).to eq(storage_node.url) }
@@ -43,6 +44,7 @@ RSpec.describe ::EacConfig::YamlFileNode do
   context 'with not existing entry' do
     let(:entry) { instance.entry('no_exist') }
 
+    it { expect(entry).to be_a(::EacConfig::Entry) }
     it { expect(entry.value).to eq(nil) }
     it { expect(entry.source_node).to eq(nil) }
     it { expect(entry).not_to be_found }
