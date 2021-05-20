@@ -22,6 +22,8 @@ module EacConfig
       node_entry.if_present(&:value)
     end
 
+    delegate :value=, to: :root_node
+
     private
 
     def node_entry_uncached
