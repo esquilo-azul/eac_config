@@ -33,5 +33,9 @@ module EacConfig
     def initialize(parts)
       @parts = parts.to_a.freeze
     end
+
+    def to_s
+      "#{self.class}[#{parts.join(PART_SEPARATOR)}]"
+    end
   end
 end
