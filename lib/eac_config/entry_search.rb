@@ -10,14 +10,21 @@ module EacConfig
 
     private
 
+    def node_entry_or_nil(node_entry)
+      return nil unless node_entry.if_present(false, &:found?)
+
+      ::EacConfig::Entry.new(node_entry.node, node_entry.path, true, node_entry.value)
+    end
+
     def result_from_load_path_uncached
-      node.recursive_loaded_nodes.lazy.map { |loaded_node| loaded_node.entry(path) }.find(&:found?)
+      node_entry_or_nil(
+        node.recursive_loaded_nodes.lazy.map { |loaded_node| loaded_node.self_entry(path) }
+            .find(&:found?)
+      )
     end
 
     def result_from_self_uncached
-      return nil unless paths_hash.key?(to_paths_hash_key)
-
-      ::EacConfig::Entry.new(node, path, true, paths_hash.fetch(to_paths_hash_key))
+      node_entry_or_nil(node.self_entry(path))
     end
 
     def result_not_found_uncached
