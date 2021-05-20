@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
+require 'eac_config/entry'
 require 'eac_config/entry_path'
-require 'eac_config/entry_search'
 require 'eac_config/load_nodes_search'
 require 'eac_config/node_entry'
 require 'eac_ruby_utils/core_ext'
@@ -17,7 +17,7 @@ module EacConfig
     LOAD_PATH_PATH_SEPARATOR = ':'
 
     def entry(path)
-      ::EacConfig::EntrySearch.new(self, ::EacConfig::EntryPath.assert(path)).result
+      ::EacConfig::Entry.new(self, path)
     end
 
     # @return [Addressable::URI]
