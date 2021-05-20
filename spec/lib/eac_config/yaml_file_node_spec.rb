@@ -25,7 +25,7 @@ RSpec.describe ::EacConfig::YamlFileNode do
     let(:entry) { instance.entry('common') }
 
     it { expect(entry.value).to eq('AAA') }
-    it { expect(entry.source_node).to eq(instance) }
+    it { expect(entry.found_node).to eq(instance) }
     it { expect(entry).to be_found }
   end
 
@@ -37,7 +37,7 @@ RSpec.describe ::EacConfig::YamlFileNode do
       it { expect(entry).to be_a(::EacConfig::Entry) }
       it { expect(entry).to be_found }
       it { expect(entry.value).to eq(storage.key) }
-      it { expect(entry.source_node.url).to eq(storage_node.url) }
+      it { expect(entry.found_node.url).to eq(storage_node.url) }
     end
   end
 
@@ -46,7 +46,7 @@ RSpec.describe ::EacConfig::YamlFileNode do
 
     it { expect(entry).to be_a(::EacConfig::Entry) }
     it { expect(entry.value).to eq(nil) }
-    it { expect(entry.source_node).to eq(nil) }
+    it { expect(entry.found_node).to eq(nil) }
     it { expect(entry).not_to be_found }
   end
 end
