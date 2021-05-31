@@ -6,8 +6,9 @@ module EacConfig
     common_constructor :source, :loader_uri, default: [nil]
 
     def available_node_classes
+      require 'eac_config/envvars_node'
       require 'eac_config/yaml_file_node'
-      [::EacConfig::YamlFileNode]
+      [::EacConfig::EnvvarsNode, ::EacConfig::YamlFileNode]
     end
 
     def instanciate
