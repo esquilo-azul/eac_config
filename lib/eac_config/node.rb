@@ -37,7 +37,7 @@ module EacConfig
     end
 
     def self_entry_class
-      ::EacConfig::NodeEntry
+      self.class.const_get('Entry')
     end
 
     # @return [Array<EacConfig::Node>]

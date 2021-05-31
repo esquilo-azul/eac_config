@@ -7,6 +7,7 @@ require 'eac_ruby_utils/yaml'
 
 module EacConfig
   class YamlFileNode
+    require_sub __FILE__
     include ::EacConfig::Node
 
     common_constructor :path do
