@@ -22,5 +22,7 @@ module EacConfig
     def push(new_path)
       entry.value = paths + [new_path]
     end
+
+    delegate :to_s, to: :paths
   end
 end
