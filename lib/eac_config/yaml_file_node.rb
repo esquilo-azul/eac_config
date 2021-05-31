@@ -10,6 +10,12 @@ module EacConfig
     require_sub __FILE__
     include ::EacConfig::Node
 
+    class << self
+      def from_uri(uri)
+        return new(uri.to_addressable.path) if uri.to_addressable.scheme == 'file'
+      end
+    end
+
     common_constructor :path do
       self.path = path.to_pathname
     end

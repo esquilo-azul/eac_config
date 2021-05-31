@@ -5,6 +5,7 @@ require 'eac_config/entry_path'
 require 'eac_config/load_path'
 require 'eac_config/load_nodes_search'
 require 'eac_config/node_entry'
+require 'eac_config/node_uri'
 require 'eac_ruby_utils/core_ext'
 
 module EacConfig
@@ -53,7 +54,7 @@ module EacConfig
     private
 
     def load_node(node_path)
-      self.class.new(node_path.to_pathname.expand_path(path.parent))
+      ::EacConfig::NodeUri.new(node_path, url).instanciate
     end
   end
 end
