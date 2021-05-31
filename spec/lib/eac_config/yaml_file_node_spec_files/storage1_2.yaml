@@ -1,3 +1,4 @@
 ---
-load_path: ./storage1_2/storage1_2_1.yaml
+load_path:
+  - ./storage1_2/storage1_2_1.yaml
 storage1_2: storage1_2
