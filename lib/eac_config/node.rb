@@ -31,7 +31,11 @@ module EacConfig
     # Return a entry which search values only in the self node.
     # @return [EacConfig::NodeEntry]
     def self_entry(path)
-      ::EacConfig::NodeEntry.new(self, path)
+      self_entry_class.new(self, path)
+    end
+
+    def self_entry_class
+      ::EacConfig::NodeEntry
     end
 
     # @return [Array<EacConfig::Node>]
