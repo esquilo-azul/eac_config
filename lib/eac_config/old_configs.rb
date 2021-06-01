@@ -8,6 +8,7 @@ require 'eac_config/paths_hash'
 require 'eac_ruby_utils/simple_cache'
 
 module EacConfig
+  # @deprecated Use {EacConfig::YamlFileNode} instead.
   class OldConfigs
     include ::EacRubyUtils::SimpleCache
 
