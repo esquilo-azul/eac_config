@@ -23,7 +23,11 @@ module EacConfig
     end
 
     def value=(a_value)
-      root_node.self_entry(path).value = a_value
+      write_node.self_entry(path).value = a_value
+    end
+
+    def write_node
+      root_node.write_node || root_node
     end
 
     private
