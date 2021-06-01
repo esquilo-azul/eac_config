@@ -22,7 +22,9 @@ module EacConfig
       node_entry.if_present(&:value)
     end
 
-    delegate :value=, to: :root_node
+    def value=(a_value)
+      root_node.self_entry(path).value = a_value
+    end
 
     private
 
