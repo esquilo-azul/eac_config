@@ -14,7 +14,7 @@ module EacConfig
     end
 
     def data
-      @data ||= ::EacRubyUtils::Yaml.load_file(assert_path)
+      @data ||= ::EacRubyUtils::Yaml.load_file(assert_path) || {}
     end
 
     def persist_data(new_data)
