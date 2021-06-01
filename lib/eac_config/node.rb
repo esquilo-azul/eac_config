@@ -9,6 +9,8 @@ require 'eac_ruby_utils/core_ext'
 
 module EacConfig
   module Node
+    attr_accessor :write_node
+
     common_concern do
       enable_abstract_methods
       include ::Comparable
