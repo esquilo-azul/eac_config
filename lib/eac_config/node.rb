@@ -7,9 +7,16 @@ require 'eac_config/load_nodes_search'
 require 'eac_config/node_entry'
 require 'eac_config/node_uri'
 require 'eac_ruby_utils/core_ext'
+require 'eac_ruby_utils/context'
 
 module EacConfig
   module Node
+    class << self
+      def context
+        @context ||= ::EacRubyUtils::Context.new
+      end
+    end
+
     attr_accessor :write_node
 
     common_concern do
