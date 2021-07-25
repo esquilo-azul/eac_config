@@ -15,5 +15,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'addressable'
   s.add_dependency 'eac_ruby_utils', '~> 0.64'
 
-  s.add_development_dependency 'eac_ruby_gem_support', '~> 0.2'
+  s.add_development_dependency 'eac_ruby_gem_support', '~> 0.3'
 end
