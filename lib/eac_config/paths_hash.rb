@@ -49,6 +49,13 @@ module EacConfig
 
     delegate :to_h, to: :root
 
+    # @return [EacConfig::PathsHash
+    def write(entry_key, entry_value)
+      self[entry_key] = entry_value
+
+      self
+    end
+
     private
 
     attr_reader :data
