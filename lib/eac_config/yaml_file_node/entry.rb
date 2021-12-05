@@ -18,14 +18,13 @@ module EacConfig
       end
 
       def value=(a_value)
-        paths_hash[to_paths_hash_key] = a_value
-        node.persist_data(paths_hash.root.to_h)
+        node.persist_data(paths_hash.write(to_paths_hash_key, a_value).root.to_h)
       end
 
       private
 
       # @return [EacConfig::PathsHash]
-      def paths_hash_uncached
+      def paths_hash
         ::EacConfig::PathsHash.new(node.data)
       end
 
