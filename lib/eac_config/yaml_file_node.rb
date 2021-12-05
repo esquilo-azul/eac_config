@@ -33,17 +33,15 @@ module EacConfig
 
     private
 
-    def assert_path
-      unless path.file?
-        raise("\"#{path}\" is a not a file") if path.exist?
-
-        persist_data({})
-      end
-      path
-    end
-
     def data_uncached
-      ::EacRubyUtils::Yaml.load_file(assert_path) || {}
+      r = nil
+      if path.file?
+        r = ::EacRubyUtils::Yaml.load_file(path)
+      elsif path.exist?
+        raise("\"#{path}\" is a not a file")
+      end
+
+      r.is_a?(::Hash) ? r : {}
     end
   end
 end
