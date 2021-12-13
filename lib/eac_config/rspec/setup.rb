@@ -29,10 +29,10 @@ module EacConfig
         ::EacConfig::EnvvarsNode.new.load_path.entry
       end
 
-      def stub_eac_config_node(target_example = nil, &node_builder)
+      def stub_eac_config_node(target_example = nil, target_file = nil, &node_builder)
         parent_self = self
         (target_example || rspec_config).around do |example|
-          ::EacRubyUtils::Fs::Temp.on_file do |file|
+          parent_self.stub_eac_config_node_on_file(target_file) do |file|
             ::EacConfig::Node
               .context.on(parent_self.stub_eac_config_node_build(file, &node_builder)) do
               example.run
@@ -43,6 +43,14 @@ module EacConfig
 
       def stub_eac_config_node_build(file, &node_builder)
         node_builder.present? ? node_builder.call(file) : ::EacConfig::YamlFileNode.new(file)
+      end
+
+      def stub_eac_config_node_on_file(target_file)
+        if target_file
+          yield(target_file.to_pathname)
+        else
+          ::EacRubyUtils::Fs::Temp.on_file { |file| yield(file) }
+        end
       end
     end
   end
