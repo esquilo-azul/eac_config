@@ -29,9 +29,9 @@ module EacConfig
         ::EacConfig::EnvvarsNode.new.load_path.entry
       end
 
-      def stub_eac_config_node(&node_builder)
+      def stub_eac_config_node(target_example = nil, &node_builder)
         parent_self = self
-        rspec_config.around do |example|
+        (target_example || rspec_config).around do |example|
           ::EacRubyUtils::Fs::Temp.on_file do |file|
             ::EacConfig::Node
               .context.on(parent_self.stub_eac_config_node_build(file, &node_builder)) do
