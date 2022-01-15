@@ -14,5 +14,9 @@ module EacConfig
     end
 
     abstract_methods :found?, :value, :value=
+
+    def secret_value
+      value
+    end
   end
 end
