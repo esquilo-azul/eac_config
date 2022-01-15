@@ -18,6 +18,10 @@ module EacConfig
       node_entry.if_present(&:node)
     end
 
+    def secret_value
+      node_entry.if_present(&:secret_value)
+    end
+
     def value
       node_entry.if_present(&:value)
     end
