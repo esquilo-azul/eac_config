@@ -29,6 +29,14 @@ module EacConfig
         ::EacConfig::EnvvarsNode.new.load_path.entry
       end
 
+      # Wraps a RSpec example in a EacConfig node using a alternative file.
+      #
+      # @param target_example [RSpec::Core::ExampleGroup] The example to wrap. If not provided,
+      #   it is applied to all examples.
+      # @param target_file [Pathname] The file used by the EacConfig node. If not provided, a
+      #   temporary file is used.
+      # @param node_builder [Proc] Should return the desired EacConfig node. If not provided, a
+      #   EacConfig::YamlFileNode is created.
       def stub_eac_config_node(target_example = nil, target_file = nil, &node_builder)
         parent_self = self
         (target_example || rspec_config).around do |example|
