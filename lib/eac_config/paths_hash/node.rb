@@ -34,7 +34,7 @@ module EacConfig
       end
 
       def to_h
-        data.map { |k, v| [k, v.is_a?(Node) ? v.to_h : v] }.to_h
+        data.transform_values { |v| v.is_a?(Node) ? v.to_h : v }
       end
 
       def read_entry(path_search)

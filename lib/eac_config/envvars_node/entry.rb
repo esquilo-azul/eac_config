@@ -12,7 +12,7 @@ module EacConfig
       class << self
         def entry_path_to_envvar_name(path)
           ::EacConfig::EntryPath.assert(path).parts.join('_').gsub(/[^a-z0-9_]/i, '')
-                                .gsub(/\A_+/, '').gsub(/_+\z/, '').gsub(/_{2,}/, '_').upcase
+            .gsub(/\A_+/, '').gsub(/_+\z/, '').gsub(/_{2,}/, '_').upcase
         end
 
         def from_value(string)
