@@ -34,6 +34,11 @@ module EacConfig
       @parts = parts.to_a.freeze
     end
 
+    # @return [EacConfig::EntryPath]
+    def +(other)
+      self.class.new(parts + self.class.assert(other).parts)
+    end
+
     def to_s
       "#{self.class}[#{parts.join(PART_SEPARATOR)}]"
     end
