@@ -58,6 +58,12 @@ module EacConfig
       ::EacConfig::LoadNodesSearch.new(self).result
     end
 
+    # @return [EacConfig::PrefixedPathNode]
+    def with_prefix(path_prefix)
+      require 'eac_config/prefixed_path_node'
+      ::EacConfig::PrefixedPathNode.new(self, path_prefix)
+    end
+
     private
 
     def load_node(node_path)
