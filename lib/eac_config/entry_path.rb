@@ -29,7 +29,7 @@ module EacConfig
     end
 
     common_constructor :parts do
-      self.parts = parts.to_a.freeze
+      self.parts = ::Array.new(parts).freeze
     end
 
     # @return [EacConfig::EntryPath]
