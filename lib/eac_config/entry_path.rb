@@ -28,7 +28,7 @@ module EacConfig
       end
     end
 
-    common_constructor :parts do
+    common_constructor :parts, default: [[]] do
       self.parts = ::Array.new(parts).freeze
     end
 
