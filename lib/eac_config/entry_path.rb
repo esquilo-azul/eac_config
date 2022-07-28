@@ -33,6 +33,8 @@ module EacConfig
     end
 
     compare_by :parts
+    delegate :any?, :count, :each, :each_value, :each_with_index, :empty?, :fetch, :first, :index,
+             :inject, :last, :map, :size, to: :parts
 
     # @return [EacConfig::EntryPath]
     def +(other)
