@@ -28,10 +28,8 @@ module EacConfig
       end
     end
 
-    attr_reader :parts
-
-    def initialize(parts)
-      @parts = parts.to_a.freeze
+    common_constructor :parts do
+      self.parts = parts.to_a.freeze
     end
 
     # @return [EacConfig::EntryPath]
