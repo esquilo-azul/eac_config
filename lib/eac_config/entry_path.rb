@@ -32,6 +32,8 @@ module EacConfig
       self.parts = ::Array.new(parts).freeze
     end
 
+    compare_by :parts
+
     # @return [EacConfig::EntryPath]
     def +(other)
       self.class.new(parts + self.class.assert(other).parts)
