@@ -41,6 +41,11 @@ module EacConfig
       self.class.new(parts + self.class.assert(other).parts)
     end
 
+    def slice(*args)
+      r = parts.slice(*args)
+      r.is_a?(::Enumerable) ? self.class.new(r) : r
+    end
+
     def to_s
       "#{self.class}[#{parts.join(PART_SEPARATOR)}]"
     end
