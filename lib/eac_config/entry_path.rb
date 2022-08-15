@@ -51,7 +51,12 @@ module EacConfig
     end
 
     def to_s
-      "#{self.class}[#{parts.join(PART_SEPARATOR)}]"
+      "#{self.class}[#{to_string}]"
+    end
+
+    # @return [String]
+    def to_string
+      parts.join(PART_SEPARATOR)
     end
   end
 end
