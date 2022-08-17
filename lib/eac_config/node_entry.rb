@@ -18,5 +18,10 @@ module EacConfig
     def secret_value
       value
     end
+
+    # @return [String]
+    def to_s
+      "#{self.class}[Node: #{node}, Path: #{path}]"
+    end
   end
 end
