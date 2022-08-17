@@ -22,6 +22,10 @@ module EacConfig
       node_entry.if_present(&:secret_value)
     end
 
+    def to_s
+      "#{self.class}[RootNode: #{root_node}, Path: #{path}]"
+    end
+
     def value
       node_entry.if_present(&:value)
     end
