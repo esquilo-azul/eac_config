@@ -31,6 +31,10 @@ module EacConfig
       ::Addressable::URI.parse("file://#{path.expand_path}")
     end
 
+    def to_s
+      "#{self.class}[#{path}]"
+    end
+
     private
 
     def data_uncached
