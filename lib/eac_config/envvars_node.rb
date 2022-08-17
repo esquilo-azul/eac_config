@@ -21,5 +21,9 @@ module EacConfig
     def url
       URI
     end
+
+    def to_s
+      "#{self.class}[ObjectId: #{object_id}]}"
+    end
   end
 end
