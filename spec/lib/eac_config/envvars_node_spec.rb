@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_config/envvars_node'
+require 'eac_ruby_utils/ruby'
 
 RSpec.describe ::EacConfig::EnvvarsNode do
   let(:instance) { described_class.new }
@@ -18,6 +19,16 @@ RSpec.describe ::EacConfig::EnvvarsNode do
     it { expect(entry.value).to eq('AAA') }
     it { expect(entry.found_node).to eq(instance) }
     it { expect(entry).to be_found }
+
+    context 'with a clean ruby environment' do
+      let(:entry_value) do
+        ::EacRubyUtils::Ruby.on_clean_environment do
+          entry.value
+        end
+      end
+
+      it { expect(entry_value).to eq('AAA') }
+    end
   end
 
   context 'with blank entry' do
