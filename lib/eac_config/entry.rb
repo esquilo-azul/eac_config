@@ -5,6 +5,7 @@ require 'eac_ruby_utils/core_ext'
 
 module EacConfig
   class Entry
+    require_sub __FILE__
     enable_simple_cache
     common_constructor :root_node, :path do
       self.path = ::EacConfig::EntryPath.assert(path)
@@ -28,6 +29,12 @@ module EacConfig
 
     def value
       node_entry.if_present(&:value)
+    end
+
+    def value!
+      return value if found?
+
+      raise ::EacConfig::Entry::NotFoundError, self
     end
 
     def value=(a_value)
