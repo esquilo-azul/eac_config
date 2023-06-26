@@ -48,5 +48,7 @@ module EacConfig
 
       r.is_a?(::Hash) ? r : {}
     end
+
+    require_sub __FILE__, require_mode: :kernel
   end
 end
