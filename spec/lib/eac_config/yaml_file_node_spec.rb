@@ -12,41 +12,40 @@ RSpec.describe ::EacConfig::YamlFileNode do
   end
 
   let(:fixtures_dir) { ::Pathname.new(__dir__).join('yaml_file_node_spec_files') }
-  let(:target_dir) { temp_copy(fixtures_dir) }
-  let(:yaml_file_path) do
-    r = target_dir.join('storage1.yaml')
-    r.write(r.read.gsub('%%STORAGE1_2_ABSOLUTE_PATH%%',
-                        target_dir.join('storage1_2.yaml').expand_path.to_path))
-    r
-  end
-  let(:instance) { described_class.new(yaml_file_path) }
-
-  context 'with common entry' do
-    let(:entry) { instance.entry('common') }
-
-    it { expect(entry.value).to eq('AAA') }
-    it { expect(entry.found_node).to eq(instance) }
-    it { expect(entry).to be_found }
-  end
+  let(:instance) { storage1 }
 
   storages.each do |storage|
-    context "with entry in loaded path \"#{storage.subpath}\"" do
-      let(:entry) { instance.entry(storage.key) }
-      let(:storage_node) { described_class.new(target_dir.join(storage.subpath)) }
-
-      it { expect(entry).to be_a(::EacConfig::Entry) }
-      it { expect(entry).to be_found }
-      it { expect(entry.value).to eq(storage.key) }
-      it { expect(entry.found_node.url).to eq(storage_node.url) }
-    end
+    let(storage.key) { described_class.new(fixtures_dir.join(storage.subpath)) }
   end
 
-  context 'with not existing entry' do
-    let(:entry) { instance.entry('no_exist') }
+  describe '#entry' do
+    context 'with common entry' do
+      let(:entry) { instance.entry('common') }
 
-    it { expect(entry).to be_a(::EacConfig::Entry) }
-    it { expect(entry.value).to eq(nil) }
-    it { expect(entry.found_node).to eq(nil) }
-    it { expect(entry).not_to be_found }
+      it { expect(entry.value).to eq('AAA') }
+      it { expect(entry.found_node).to eq(instance) }
+      it { expect(entry).to be_found }
+    end
+
+    storages.each do |storage|
+      context "with entry in loaded path \"#{storage.subpath}\"" do
+        let(:entry) { instance.entry(storage.key) }
+        let(:storage_node) { send(storage.key) }
+
+        it { expect(entry).to be_a(::EacConfig::Entry) }
+        it { expect(entry).to be_found }
+        it { expect(entry.value).to eq(storage.key) }
+        it { expect(entry.found_node.url).to eq(storage_node.url) }
+      end
+    end
+
+    context 'with not existing entry' do
+      let(:entry) { instance.entry('no_exist') }
+
+      it { expect(entry).to be_a(::EacConfig::Entry) }
+      it { expect(entry.value).to eq(nil) }
+      it { expect(entry.found_node).to eq(nil) }
+      it { expect(entry).not_to be_found }
+    end
   end
 end

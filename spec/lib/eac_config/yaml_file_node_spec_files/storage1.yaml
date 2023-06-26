@@ -2,5 +2,5 @@
 common: AAA
 load_path:
   - storage1_1.yaml
-  - %%STORAGE1_2_ABSOLUTE_PATH%%
+  - storage1_2.yaml
 storage1: storage1
