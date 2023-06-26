@@ -48,4 +48,41 @@ RSpec.describe ::EacConfig::YamlFileNode do
       it { expect(entry).not_to be_found }
     end
   end
+
+  describe '#entries' do
+    context 'when search path is "common"' do
+      let(:path) { 'common' }
+      let(:actual) { instance.entries(path).node_entries }
+      let(:expected) { [::EacConfig::YamlFileNode::Entry.new(storage1, path)] }
+
+      it { expect(actual).to eq(expected) }
+    end
+
+    context 'when search path is "same.path"' do
+      let(:path) { 'same.path' }
+      let(:actual) { instance.entries(path).node_entries }
+      let(:expected) do
+        [storage1_1, storage1_2_1].map do |n|
+          ::EacConfig::YamlFileNode::Entry.new(n, 'same.path')
+        end
+      end
+
+      it { expect(actual).to eq(expected) }
+    end
+
+    context 'when search path is "*.search_me"' do
+      let(:path) { '*.search_me' }
+      let(:actual) { instance.entries(path).node_entries }
+      let(:expected) do
+        [
+          [storage1, 'storage1_a'], [storage1, 'storage1_b'],
+          [storage1_2, 'storage1_2_a'], [storage1_2, 'storage1_2_b'], [storage1_2, 'storage1_2_c']
+        ].map do |args|
+          ::EacConfig::YamlFileNode::Entry.new(args[0], args[1] + '.search_me')
+        end
+      end
+
+      it { expect(actual).to eq(expected) }
+    end
+  end
 end

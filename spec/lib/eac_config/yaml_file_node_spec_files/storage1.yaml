@@ -4,3 +4,7 @@ load_path:
   - storage1_1.yaml
   - storage1_2.yaml
 storage1: storage1
+storage1_a:
+  search_me: 1_a
+storage1_b:
+  search_me: 1_b

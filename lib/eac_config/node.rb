@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'eac_config/entries'
 require 'eac_config/entry'
 require 'eac_config/entry_path'
 require 'eac_config/load_path'
@@ -22,6 +23,11 @@ module EacConfig
     common_concern do
       acts_as_abstract :self_entries
       include ::Comparable
+    end
+
+    # @return [Array<EacConfig::Entries>]
+    def entries(path)
+      ::EacConfig::Entries.new(self, path)
     end
 
     def entry(path)

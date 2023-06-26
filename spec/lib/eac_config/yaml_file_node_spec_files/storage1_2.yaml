@@ -2,3 +2,9 @@
 load_path:
   - ./storage1_2/storage1_2_1.yaml
 storage1_2: storage1_2
+storage1_2_a:
+  search_me: 1_2_a
+storage1_2_b:
+  search_me: 1_2_a
+storage1_2_c:
+  search_me: 1_2_a
