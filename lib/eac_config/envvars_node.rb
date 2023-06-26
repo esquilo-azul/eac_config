@@ -18,6 +18,12 @@ module EacConfig
       end
     end
 
+    # @param path [EacConfig::EntryPath]
+    # @return [Array<EacConfig::Entries>]
+    def self_entries(_path)
+      []
+    end
+
     def url
       URI
     end
