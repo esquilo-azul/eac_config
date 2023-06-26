@@ -20,7 +20,7 @@ module EacConfig
     attr_accessor :write_node
 
     common_concern do
-      enable_abstract_methods
+      acts_as_abstract :self_entries
       include ::Comparable
     end
 
