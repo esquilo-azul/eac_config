@@ -73,5 +73,10 @@ module EacConfig
       new_parts.shift
       self.class.new(new_parts)
     end
+
+    # @return [EacConfig::EntryPath]
+    def with_last(part)
+      self.class.new(parts + [part])
+    end
   end
 end
