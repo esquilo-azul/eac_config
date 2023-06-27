@@ -56,7 +56,7 @@ module EacConfig
 
     # @return [Array<EacConfig::Node>]
     def self_loaded_nodes
-      load_path.paths.map { |node_path| load_node(node_path) }
+      load_path.paths.flat_map { |node_path| load_nodes(node_path) }
     end
 
     # @return [Array<EacConfig::Node>]
@@ -74,6 +74,12 @@ module EacConfig
 
     def load_node(node_path)
       ::EacConfig::NodeUri.new(node_path, url).instanciate
+    end
+
+    # @param node_path [String]
+    # @return [Array<EacConfig::Node>]
+    def load_nodes(node_path)
+      [load_node(node_path)]
     end
   end
 end
