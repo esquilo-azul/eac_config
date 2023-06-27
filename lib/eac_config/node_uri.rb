@@ -5,15 +5,9 @@ module EacConfig
     enable_simple_cache
     common_constructor :source, :loader_uri, default: [nil]
 
-    def available_node_classes
-      require 'eac_config/envvars_node'
-      require 'eac_config/yaml_file_node'
-      [::EacConfig::EnvvarsNode, ::EacConfig::YamlFileNode]
-    end
-
+    # @return [EacConfig::Node]
     def instanciate
-      available_node_classes.lazy.map { |k| k.from_uri(self) }.find(&:present?) ||
-        raise("No class mapped for \"#{to_addressable}\"")
+      instanciate_single(to_addressable)
     end
 
     delegate :to_s, to: :to_addressable
@@ -34,5 +28,7 @@ module EacConfig
 
       r.to_pathname.parent
     end
+
+    require_sub __FILE__, require_mode: :kernel
   end
 end
