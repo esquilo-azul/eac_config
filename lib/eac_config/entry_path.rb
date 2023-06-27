@@ -78,5 +78,12 @@ module EacConfig
     def with_last(part)
       self.class.new(parts + [part])
     end
+
+    # @return [EacConfig::EntryPath]
+    def without_last
+      new_parts = parts.dup
+      new_parts.pop
+      self.class.new(new_parts)
+    end
   end
 end
