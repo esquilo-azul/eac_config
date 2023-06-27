@@ -58,5 +58,13 @@ module EacConfig
     def to_string
       parts.join(PART_SEPARATOR)
     end
+
+    # @param part [String]
+    # @return [EacConfig::EntryPath]
+    def with_first(part)
+      new_parts = parts.dup
+      new_parts.unshift(part)
+      self.class.new(new_parts)
+    end
   end
 end
