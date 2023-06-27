@@ -72,14 +72,10 @@ module EacConfig
 
     private
 
-    def load_node(node_path)
-      ::EacConfig::NodeUri.new(node_path, url).instanciate
-    end
-
     # @param node_path [String]
     # @return [Array<EacConfig::Node>]
     def load_nodes(node_path)
-      [load_node(node_path)]
+      ::EacConfig::NodeUri.new(node_path, url).instanciate
     end
   end
 end
