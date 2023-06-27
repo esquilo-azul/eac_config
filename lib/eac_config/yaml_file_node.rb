@@ -20,6 +20,7 @@ module EacConfig
     common_constructor :path do
       self.path = path.to_pathname
     end
+    compare_by :path
 
     def persist_data(new_data)
       path.parent.mkpath
