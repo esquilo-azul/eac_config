@@ -66,5 +66,12 @@ module EacConfig
       new_parts.unshift(part)
       self.class.new(new_parts)
     end
+
+    # @return [EacConfig::EntryPath]
+    def without_first
+      new_parts = parts.dup
+      new_parts.shift
+      self.class.new(new_parts)
+    end
   end
 end
