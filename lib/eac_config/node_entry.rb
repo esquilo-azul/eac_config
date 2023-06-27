@@ -12,6 +12,7 @@ module EacConfig
     common_constructor :node, :path do
       self.path = ::EacConfig::EntryPath.assert(path)
     end
+    compare_by :node, :path
 
     abstract_methods :found?, :value, :value=
 
