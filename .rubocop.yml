@@ -1,10 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-RSpec/BeEq:
-  Exclude:
-  - spec/lib/eac_config/envvars_node_spec.rb
-  - spec/lib/eac_config/yaml_file_node_spec.rb
 RSpec/EmptyExampleGroup:
   Exclude:
   - spec/lib/eac_config/paths_hash_spec.rb

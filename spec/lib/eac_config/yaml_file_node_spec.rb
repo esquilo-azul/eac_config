@@ -43,8 +43,8 @@ RSpec.describe ::EacConfig::YamlFileNode do
       let(:entry) { instance.entry('no_exist') }
 
       it { expect(entry).to be_a(::EacConfig::Entry) }
-      it { expect(entry.value).to eq(nil) }
-      it { expect(entry.found_node).to eq(nil) }
+      it { expect(entry.value).to be_nil }
+      it { expect(entry.found_node).to be_nil }
       it { expect(entry).not_to be_found }
     end
   end
