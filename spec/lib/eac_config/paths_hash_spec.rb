@@ -7,8 +7,8 @@ RSpec.describe ::EacConfig::PathsHash do
     {
       parent: {
         child1: {
-          child1_1: 'v1_1',
-          child1_2: 'v1_2'
+          child1_1: 'v1_1', # rubocop:disable Naming/VariableNumber
+          child1_2: 'v1_2' # rubocop:disable Naming/VariableNumber
         },
         child2: 'v2'
       }
@@ -23,8 +23,8 @@ RSpec.describe ::EacConfig::PathsHash do
       'parent.child2' => 'v2',
       'no_exist' => nil,
       'parent.child1' => {
-        child1_1: 'v1_1',
-        child1_2: 'v1_2'
+        child1_1: 'v1_1', # rubocop:disable Naming/VariableNumber
+        child1_2: 'v1_2' # rubocop:disable Naming/VariableNumber
       }
     }.each do |entry_key, expected_value|
       it { expect(instance[entry_key]).to eq(expected_value) }
