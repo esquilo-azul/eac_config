@@ -28,7 +28,7 @@ module EacConfig
       end
 
       def succeeding
-        self.class.new(current[1..-1], previous + [cursor])
+        self.class.new(current[1..], previous + [cursor])
       end
 
       def to_s
