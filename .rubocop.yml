@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Gemspec/RequiredRubyVersion:
-  Exclude:
-  - eac_config.gemspec
 Metrics/CyclomaticComplexity:
   Exclude:
   - lib/eac_config/paths_hash.rb
