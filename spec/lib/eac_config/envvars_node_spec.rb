@@ -3,7 +3,7 @@
 require 'eac_config/envvars_node'
 require 'eac_ruby_utils/ruby'
 
-RSpec.describe ::EacConfig::EnvvarsNode do
+RSpec.describe EacConfig::EnvvarsNode do
   let(:instance) { described_class.new }
 
   before do
@@ -15,14 +15,14 @@ RSpec.describe ::EacConfig::EnvvarsNode do
   context 'with common entry' do
     let(:entry) { instance.entry('common') }
 
-    it { expect(entry).to be_a(::EacConfig::Entry) }
+    it { expect(entry).to be_a(EacConfig::Entry) }
     it { expect(entry.value).to eq('AAA') }
     it { expect(entry.found_node).to eq(instance) }
     it { expect(entry).to be_found }
 
     context 'with a clean ruby environment' do
       let(:entry_value) do
-        ::EacRubyUtils::Ruby.on_clean_environment do
+        EacRubyUtils::Ruby.on_clean_environment do
           entry.value
         end
       end
@@ -34,7 +34,7 @@ RSpec.describe ::EacConfig::EnvvarsNode do
   context 'with blank entry' do
     let(:entry) { instance.entry('blank') }
 
-    it { expect(entry).to be_a(::EacConfig::Entry) }
+    it { expect(entry).to be_a(EacConfig::Entry) }
     it { expect(entry.value).to eq('') }
     it { expect(entry.found_node).to eq(instance) }
     it { expect(entry).to be_found }
@@ -43,7 +43,7 @@ RSpec.describe ::EacConfig::EnvvarsNode do
   context 'with not existing entry' do
     let(:entry) { instance.entry('no.exist') }
 
-    it { expect(entry).to be_a(::EacConfig::Entry) }
+    it { expect(entry).to be_a(EacConfig::Entry) }
     it { expect(entry.value).to be_nil }
     it { expect(entry.found_node).to be_nil }
     it { expect(entry).not_to be_found }

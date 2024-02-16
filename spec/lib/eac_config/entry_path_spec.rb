@@ -2,7 +2,7 @@
 
 require 'eac_config/entry_path'
 
-RSpec.describe ::EacConfig::EntryPath do
+RSpec.describe EacConfig::EntryPath do
   describe '#assert' do
     {
       ['a.b.c'] => %w[a b c],
@@ -22,7 +22,7 @@ RSpec.describe ::EacConfig::EntryPath do
     [['a..c'], ['a', ' ']].each do |source|
       context "when invalid source is #{source}" do
         it do
-          expect { described_class.assert(source) }.to raise_error(::ArgumentError)
+          expect { described_class.assert(source) }.to raise_error(ArgumentError)
         end
       end
     end

@@ -2,7 +2,7 @@
 
 require 'eac_config/envvars_node/entry'
 
-RSpec.describe ::EacConfig::EnvvarsNode::Entry do
+RSpec.describe EacConfig::EnvvarsNode::Entry do
   describe '#entry_key_to_envvar_name' do
     {
       'a.entry.value' => 'A_ENTRY_VALUE',

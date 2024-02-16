@@ -2,7 +2,7 @@
 
 require 'eac_config/paths_hash'
 
-RSpec.describe ::EacConfig::PathsHash do
+RSpec.describe EacConfig::PathsHash do
   let(:source_hash) do
     {
       parent: {
@@ -32,7 +32,7 @@ RSpec.describe ::EacConfig::PathsHash do
 
     ['.only_suffix', '', '.', 'only_prefx.', 'empty..part'].each do |entry_key|
       it "invalid entry key \"#{entry_key}\" raises EntryKeyError" do
-        expect { instance[entry_key] }.to raise_error(::EacConfig::PathsHash::EntryKeyError)
+        expect { instance[entry_key] }.to raise_error(EacConfig::PathsHash::EntryKeyError)
       end
     end
   end

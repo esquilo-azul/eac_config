@@ -3,10 +3,10 @@
 require 'tempfile'
 require 'eac_config/old_configs'
 
-RSpec.describe ::EacConfig::OldConfigs do
+RSpec.describe EacConfig::OldConfigs do
   let(:configs_key) { 'configsspec' }
   let(:storage_path) do
-    file = ::Tempfile.new(configs_key)
+    file = Tempfile.new(configs_key)
     path = file.path
     file.close
     file.unlink
@@ -26,7 +26,7 @@ RSpec.describe ::EacConfig::OldConfigs do
       instance.save
     end
 
-    it { expect(::YAML.load_file(storage_path)).to eq(parent: { child: 'value1' }) }
+    it { expect(YAML.load_file(storage_path)).to eq(parent: { child: 'value1' }) }
   end
 
   describe '#read' do
