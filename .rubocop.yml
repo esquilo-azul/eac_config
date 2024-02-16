@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Metrics/CyclomaticComplexity:
-  Exclude:
-  - lib/eac_config/paths_hash.rb
 Naming/VariableNumber:
   Exclude:
   - spec/lib/eac_config/paths_hash_spec.rb

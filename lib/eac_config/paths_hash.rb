@@ -7,7 +7,7 @@ module EacConfig
     require_sub __FILE__
 
     class << self
-      def parse_entry_key(entry_key)
+      def parse_entry_key(entry_key) # rubocop:disable Metrics/CyclomaticComplexity
         r = entry_key.to_s.strip
         raise ::EacConfig::PathsHash::EntryKeyError, 'Entry key cannot start or end with dot' if
         r.start_with?('.') || r.end_with?('.')
