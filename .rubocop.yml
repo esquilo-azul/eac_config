@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/SelectByRegexp:
-  Exclude:
-  - lib/eac_config/yaml_file_node/self_entries.rb
 Style/SlicingWithRange:
   Exclude:
   - lib/eac_config/paths_hash/path_search.rb

@@ -39,7 +39,7 @@ module EacConfig
         def children
           return [] unless data_node.is_a?(::Hash)
 
-          data_node.keys.select { |k| key_matcher.match?(k) }.map { |k| child(k) }
+          data_node.keys.select { |k| key_matcher.match?(k) }.map { |k| child(k) } # rubocop:disable Style/SelectByRegexp
         end
 
         # @return [Symbol]
