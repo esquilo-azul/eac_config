@@ -37,7 +37,7 @@ module EacConfig
       end
 
       def value
-        self.class.from_value(ENV[envvar_name])
+        self.class.from_value(ENV.fetch(envvar_name, nil))
       end
 
       def value=(a_value)
