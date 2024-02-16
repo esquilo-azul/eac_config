@@ -1,45 +1,59 @@
-require:
-  - rubocop-rails
-  - rubocop-rspec
-
-AllCops:
-  TargetRailsVersion: 5.2
-  TargetRubyVersion: 2.7
-
-Metrics/BlockLength:
+---
+inherit_gem:
+  eac_ruby_gem_support: ".rubocop.yml"
+Gemspec/RequiredRubyVersion:
   Exclude:
-    - '**/*.gemspec'
-    - 'spec/**/*_spec.rb'
-
-Layout/LineLength:
-  Max: 100
-
-Layout/MultilineMethodCallIndentation:
-  EnforcedStyle: indented_relative_to_receiver
-
-Rails/DynamicFindBy:
-  Enabled: false
-
-Rails/Output:
-  Enabled: false
-
-Rails/SkipsModelValidations:
-  Enabled: false
-
-Rails/TimeZone:
-  Enabled: false
-
-Style/AsciiComments:
-  Enabled: false
-
-Style/Documentation:
-  Enabled: false
-
-Style/HashEachMethods:
-  Enabled: true
-
-Style/HashTransformKeys:
-  Enabled: true
-
-Style/HashTransformValues:
-  Enabled: true
+  - eac_config.gemspec
+Metrics/CyclomaticComplexity:
+  Exclude:
+  - lib/eac_config/paths_hash.rb
+Naming/VariableNumber:
+  Exclude:
+  - spec/lib/eac_config/paths_hash_spec.rb
+RSpec/BeEq:
+  Exclude:
+  - spec/lib/eac_config/envvars_node_spec.rb
+  - spec/lib/eac_config/yaml_file_node_spec.rb
+RSpec/EmptyExampleGroup:
+  Exclude:
+  - spec/lib/eac_config/paths_hash_spec.rb
+Style/EnvHome:
+  Exclude:
+  - lib/eac_config/old_configs.rb
+Style/ExplicitBlockArgument:
+  Exclude:
+  - lib/eac_config/rspec/setup.rb
+Style/FetchEnvVar:
+  Exclude:
+  - lib/eac_config/envvars_node/entry.rb
+  - lib/eac_config/old_configs.rb
+Style/MapToHash:
+  Exclude:
+  - lib/eac_config/paths_hash/node.rb
+Style/RedundantConstantBase:
+  Exclude:
+  - Gemfile
+  - spec/lib/eac_config/entry_path_spec.rb
+  - spec/lib/eac_config/envvars_node/entry_spec.rb
+  - spec/lib/eac_config/envvars_node_spec.rb
+  - spec/lib/eac_config/old_configs_spec.rb
+  - spec/lib/eac_config/paths_hash_spec.rb
+  - spec/lib/eac_config/yaml_file_node_spec.rb
+  - spec/rubocop_spec.rb
+  - spec/spec_helper.rb
+Style/RedundantReturn:
+  Exclude:
+  - lib/eac_config/envvars_node.rb
+  - lib/eac_config/yaml_file_node.rb
+Style/RedundantStringEscape:
+  Exclude:
+  - spec/lib/eac_config/paths_hash_spec.rb
+Style/SelectByRegexp:
+  Exclude:
+  - lib/eac_config/yaml_file_node/self_entries.rb
+Style/SlicingWithRange:
+  Exclude:
+  - lib/eac_config/paths_hash/path_search.rb
+Style/StringConcatenation:
+  Exclude:
+  - spec/lib/eac_config/yaml_file_node_spec.rb
