@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/ExplicitBlockArgument:
-  Exclude:
-  - lib/eac_config/rspec/setup.rb
 Style/FetchEnvVar:
   Exclude:
   - lib/eac_config/envvars_node/entry.rb

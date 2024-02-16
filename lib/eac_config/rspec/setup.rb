@@ -53,11 +53,11 @@ module EacConfig
         node_builder.present? ? node_builder.call(file) : ::EacConfig::YamlFileNode.new(file)
       end
 
-      def stub_eac_config_node_on_file(target_file)
+      def stub_eac_config_node_on_file(target_file, &block)
         if target_file
           yield(target_file.to_pathname)
         else
-          ::EacRubyUtils::Fs::Temp.on_file { |file| yield(file) }
+          ::EacRubyUtils::Fs::Temp.on_file(&block)
         end
       end
     end
