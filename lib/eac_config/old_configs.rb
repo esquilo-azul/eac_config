@@ -69,7 +69,7 @@ module EacConfig
     end
 
     def default_storage_path
-      ::File.join(ENV['HOME'], '.config', configs_key, 'settings.yml')
+      ::File.join(Dir.home, '.config', configs_key, 'settings.yml')
     end
   end
 end
