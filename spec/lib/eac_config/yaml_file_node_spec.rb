@@ -78,7 +78,7 @@ RSpec.describe EacConfig::YamlFileNode do
           [storage1, 'storage1_a'], [storage1, 'storage1_b'],
           [storage1_2, 'storage1_2_a'], [storage1_2, 'storage1_2_b'], [storage1_2, 'storage1_2_c']
         ].map do |args|
-          EacConfig::YamlFileNode::Entry.new(args[0], args[1] + '.search_me')
+          EacConfig::YamlFileNode::Entry.new(args[0], "#{args[1]}.search_me")
         end
       end
 
