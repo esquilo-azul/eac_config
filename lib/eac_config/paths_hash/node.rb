@@ -10,7 +10,7 @@ module EacConfig
 
       def initialize(source_hash)
         source_hash.assert_argument(Hash, 'source_hash')
-        @data = source_hash.map { |k, v| [k.to_sym, v.is_a?(Hash) ? Node.new(v) : v] }.to_h
+        @data = source_hash.to_h { |k, v| [k.to_sym, v.is_a?(Hash) ? Node.new(v) : v] }
       end
 
       def entry?(path_search)
