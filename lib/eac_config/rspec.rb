@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/core_exts'
+require 'eac_ruby_utils/core_ext'
 
 module EacConfig
   module Rspec
