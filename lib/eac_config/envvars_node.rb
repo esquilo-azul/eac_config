@@ -14,7 +14,7 @@ module EacConfig
 
     class << self
       def from_uri(uri)
-        return new if uri == URI
+        new if uri == URI
       end
     end
 

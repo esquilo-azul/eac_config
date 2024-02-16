@@ -13,7 +13,7 @@ module EacConfig
 
     class << self
       def from_uri(uri)
-        return new(uri.to_addressable.path) if uri.to_addressable.scheme == 'file'
+        new(uri.to_addressable.path) if uri.to_addressable.scheme == 'file'
       end
     end
 
